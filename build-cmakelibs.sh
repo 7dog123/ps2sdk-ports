@@ -175,6 +175,12 @@ pushd build/SDL_net
 sed -i -e 's|#include <net/if.h>||' SDLnetsys.h
 popd
 
+# Fix cannot find -lpng16: No such file or directory when using mips64r5900el-ps2-elf-pkg-config and libpng-config
+pushd libpng
+sed -i -e 's/-lpng@PNGLIB_MAJOR@@PNGLIB_MINOR@/-llibpng@PNGLIB_MAJOR@@PNGLIB_MINOR@_static/g' libpng.pc.in
+sed -i -e 's/-lpng@PNGLIB_MAJOR@@PNGLIB_MINOR@/-llibpng@PNGLIB_MAJOR@@PNGLIB_MINOR@_static/g' libpng-config.in
+popd
+
 ###
 ### Change to the build folder
 ###
